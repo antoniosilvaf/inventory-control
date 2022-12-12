@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.antoniosilva.inventorycontrol.model.Order;
 import com.antoniosilva.inventorycontrol.model.User;
+import com.antoniosilva.inventorycontrol.model.enums.OrderStatus;
 import com.antoniosilva.inventorycontrol.repository.UserRepository;
 import com.antoniosilva.inventorycontrol.service.OrderRepository;
 
@@ -35,11 +36,11 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(user1, user2, user3));
 
-        Order order1 = new Order(null, Instant.parse("2022-10-12T16:30:15Z"), user1);
-        Order order2 = new Order(null, Instant.parse("2022-10-12T16:30:15Z"), user1);
-        Order order3 = new Order(null, Instant.parse("2022-10-12T16:30:15Z"), user2);
-        Order order4 = new Order(null, Instant.parse("2022-10-12T16:30:15Z"), user3);
-        Order order5 = new Order(null, Instant.parse("2022-10-12T16:30:15Z"), user3);
+        Order order1 = new Order(null, Instant.parse("2022-10-11T12:12:17Z"), user1, OrderStatus.PAID);
+        Order order2 = new Order(null, Instant.parse("2022-10-12T16:54:31Z"), user1, OrderStatus.SHIPPED);
+        Order order3 = new Order(null, Instant.parse("2022-10-16T13:23:34Z"), user2, OrderStatus.WAITING_FOR_PAYMENT);
+        Order order4 = new Order(null, Instant.parse("2022-10-16T09:53:21Z"), user3, OrderStatus.DELIVERED);
+        Order order5 = new Order(null, Instant.parse("2022-10-25T23:31:11Z"), user3, OrderStatus.CANCELED);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5));
 

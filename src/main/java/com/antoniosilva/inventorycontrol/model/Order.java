@@ -2,6 +2,8 @@ package com.antoniosilva.inventorycontrol.model;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.antoniosilva.inventorycontrol.model.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,7 +35,26 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+    
     public Order() {
+    }
+    
+    public Integer getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setItems(Set<OrderItem> items) {
+        this.items = items;
+    }
+
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     public Order(Long id, Instant moment, User client, OrderStatus orderStatus) {

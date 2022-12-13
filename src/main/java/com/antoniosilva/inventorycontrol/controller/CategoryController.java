@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.antoniosilva.inventorycontrol.model.Order;
-import com.antoniosilva.inventorycontrol.service.OrderService;
+import com.antoniosilva.inventorycontrol.model.Category;
+import com.antoniosilva.inventorycontrol.service.CategoryService;
 
 @RestController
-@RequestMapping(value = "/orders")
-public class OrderController {
+@RequestMapping(value = "/categories")
+public class CategoryController {
     
     @Autowired
-    private OrderService service;
+    private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<Order>> findAll() {
-        List<Order> list = service.findAll();
+    public ResponseEntity<List<Category>> findAll() {
+        List<Category> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 }

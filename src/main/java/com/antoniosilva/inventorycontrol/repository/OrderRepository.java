@@ -1,4 +1,4 @@
-package com.antoniosilva.inventorycontrol.service;
+package com.antoniosilva.inventorycontrol.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

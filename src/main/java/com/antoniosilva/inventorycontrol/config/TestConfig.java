@@ -57,6 +57,17 @@ public class TestConfig implements CommandLineRunner {
 		Product p7 = new Product(null, "Gaming Desktop", "AMD Ryzen 5 5600G - HyperX 8GB Memory - NVIDIA GeForce GTX 1660 SUPER - 512GB SSD - Ceramic White", 1049.99);
 
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
+
+        p1.getCategories().add(cat1);
+        p2.getCategories().add(cat3);
+        p3.getCategories().addAll(Arrays.asList(cat3, cat5));
+        p4.getCategories().add(cat4);
+        p5.getCategories().add(cat1);
+        p6.getCategories().add(cat2);
+        p7.getCategories().addAll(Arrays.asList(cat3, cat5));
+
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7));
 
         User user1 = new User(null, "Raffaello Sanzio", "11111111111", "rafaello@gmail.com", "rafaello1483");
@@ -72,7 +83,6 @@ public class TestConfig implements CommandLineRunner {
         Order order5 = new Order(null, Instant.parse("2022-10-25T23:31:11Z"), user3, OrderStatus.CANCELED);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3, order4, order5));
-
     }
     
 }

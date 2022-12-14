@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.antoniosilva.inventorycontrol.model.Category;
 import com.antoniosilva.inventorycontrol.model.Order;
 import com.antoniosilva.inventorycontrol.model.OrderItem;
+import com.antoniosilva.inventorycontrol.model.Payment;
 import com.antoniosilva.inventorycontrol.model.Product;
 import com.antoniosilva.inventorycontrol.model.User;
 import com.antoniosilva.inventorycontrol.model.enums.OrderStatus;
@@ -95,6 +96,12 @@ public class TestConfig implements CommandLineRunner {
         OrderItem orderItem4 = new OrderItem(order3, p7, 1, p1.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4));
+
+        Payment pay1 = new Payment(null, order2, Instant.parse("2022-10-16T14:12:11Z"));
+
+        order2.setPayment(pay1);
+
+    orderRepository.save(order2);
     }
     
 }
